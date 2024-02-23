@@ -12,6 +12,11 @@ Set-Alias v nvim
 Set-Alias g git
 Set-Alias n npm
 
+function q
+{
+  Invoke-command -ScriptBlock {exit}
+}
+
 # Refresh profile pwsh / reload pwsh
 function sc
 {
