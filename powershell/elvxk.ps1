@@ -1,3 +1,11 @@
+# cd $PSHOME Profile.ps1
+# . $env:USERPROFILE\.config\powershell\elvxk.ps1
+
+# Dependencies
+# chocolatey = Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+# Terminal Icons = Install-Module -Name Terminal-Icons -Repository PSGallery
+# oh-my-posh = Install-Module -Name oh-my-posh -Repository PSGallery
+
 # Delete watermark pwsh
 Clear-Host
 
@@ -39,6 +47,10 @@ function kirby
 function cdc
 {
   Set-Location $HOME/.config/
+}
+function cda
+{
+  Set-Location $HOME/AppData/Roaming/alacritty/
 }
 
 # npm vite

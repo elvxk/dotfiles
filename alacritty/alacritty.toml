@@ -1,3 +1,27 @@
+# Windows default profile
+# ~/AppData/Roaming/alacritty/alacritty.toml
+# import = [ "~/.config/alacritty/alacritty.toml" ]
+
 import = [
-    "catppuccin_mocha.toml"
+  "~/.config/alacritty/catppuccin_mocha.toml"
 ]
+
+[font]
+normal = {family = "FiraCode Nerd Font Mono", style="Regular"}
+bold = {style="Bold"}
+italic  = {style="Italic"}
+bold_italic  = {style="Bold Italic"}
+size = 17
+
+[shell]
+program = "pwsh"
+args = ["-nologo"]
+
+[window]
+dimensions = {columns = 120, lines = 30 }
+
+[cursor]
+style =  { shape = "Beam", blinking = "On" }
+
+[env]
+TERM = "xterm-255color"
