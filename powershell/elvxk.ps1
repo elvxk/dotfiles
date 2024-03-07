@@ -6,6 +6,9 @@
 # Terminal Icons = Install-Module -Name Terminal-Icons -Repository PSGallery
 # oh-my-posh = Install-Module -Name oh-my-posh -Repository PSGallery
 
+# choco helpers 
+Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+
 # Delete watermark pwsh
 Clear-Host
 
