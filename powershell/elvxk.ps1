@@ -107,7 +107,7 @@ function ga
 {
   git add .
 }
-function gmit
+function gmitt
 {
   do
   {
@@ -136,3 +136,71 @@ function gpush
   git push -u origin $args
 }
 
+function gmit
+{
+# Daftar pilihan jenis komit
+$commitTypes = @(
+    @{ Icon = "🎉"; Label = "init"; Description = "New initial"; Selected = $false },
+    @{ Icon = "✨"; Label = "feat"; Description = "New feature"; Selected = $false },
+    @{ Icon = "🐛"; Label = "fix"; Description = "Bug fix"; Selected = $false },
+    @{ Icon = "💡"; Label = "update"; Description = "General update"; Selected = $false },
+    @{ Icon = "🔨"; Label = "refactor"; Description = "Code refactor"; Selected = $false },
+    @{ Icon = "📚"; Label = "docs"; Description = "Documentation update"; Selected = $false },
+    @{ Icon = "🚨"; Label = "test"; Description = "Adding or updating tests"; Selected = $false },
+    @{ Icon = "🐎"; Label = "perf"; Description = "Performance improvements"; Selected = $false }
+    @{ Icon = "🔥"; Label = "remove"; Description = "Remove code"; Selected = $false }
+)
+
+# Fungsi untuk menampilkan pilihan
+function Show-Choices {
+    param(
+        [int]$selectedIndex
+    )
+    Clear-Host
+    Write-Host "`e[32m󰜛 Choose commit type `e[0m:"
+    for ($i = 0; $i -lt $commitTypes.Count; $i++) {
+        if ($i -eq $selectedIndex) {
+            Write-Host "`e[33m $($commitTypes[$i].Icon) $($commitTypes[$i].Label) $(" " * (8 - $($commitTypes[$i].Label).Length)): $($commitTypes[$i].Description)`e[0m"
+        } else {
+            Write-Host "  $($commitTypes[$i].Icon) $($commitTypes[$i].Label) $(" " * (8 - $($commitTypes[$i].Label).Length)): $($commitTypes[$i].Description)"
+        }
+    }
+}
+
+# Menampilkan pilihan awal
+$selectedIndex = 0
+Show-Choices -selectedIndex $selectedIndex
+
+# Mengolah input pengguna
+do {
+    $key = $host.UI.RawUI.ReadKey("IncludeKeyDown,NoEcho").VirtualKeyCode
+    if ($key -eq 38 -and $selectedIndex -gt 0) { # Tombol panah atas
+        $selectedIndex--
+        Show-Choices -selectedIndex $selectedIndex
+    } elseif ($key -eq 40 -and $selectedIndex -lt ($commitTypes.Count - 1)) { # Tombol panah bawah
+        $selectedIndex++
+        Show-Choices -selectedIndex $selectedIndex
+    } elseif ($key -eq 13) { # Enter
+        $commitTypes[$selectedIndex].Selected = -not $commitTypes[$selectedIndex].Selected
+        Show-Choices -selectedIndex $selectedIndex
+    }
+} while ($key -ne 13)
+
+  do
+  {
+    $commit = Read-Host -Prompt "`e[32m󰜛 Enter commit message `e[0m"
+    $commit_check = $commit -replace '\s',''
+    if(!($commit_check))
+    {
+      Write-Host " Please input commit..." -ForegroundColor Red
+    }
+  }while(!($commit_check))
+
+# Menampilkan opsi yang dipilih
+$selectedOptions = $commitTypes | Where-Object { $_.Selected } | ForEach-Object { $_.Label }
+$selectedIcon = $commitTypes | Where-Object { $_.Selected } | ForEach-Object { $_.Icon }
+Write-Host ""
+Write-Host "`e[32mCommit successfully with message : `e[33m"$selectedIcon"["$selectedOptions"] "$commit"`e[0m"
+Write-Host ""
+git commit -m $selectedIcon"["$selectedOptions"] "$commit
+}
