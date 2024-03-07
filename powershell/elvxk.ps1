@@ -202,5 +202,5 @@ $selectedIcon = $commitTypes | Where-Object { $_.Selected } | ForEach-Object { $
 Write-Host ""
 Write-Host "`e[32mCommit successfully with message : `e[33m"$selectedIcon"["$selectedOptions"] "$commit"`e[0m"
 Write-Host ""
-git commit -m $selectedIcon"["$selectedOptions"] "$commit
+git commit -m $selectedIcon" ["$selectedOptions"] "$commit
 }
