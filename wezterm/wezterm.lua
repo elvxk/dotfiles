@@ -6,9 +6,22 @@ end
 
 -- default shell
 config.default_prog = { "pwsh", "-nologo" }
+-- config.default_prog = { "wsl", "-d", "Ubuntu" }
+-- config.default_prog = { "D:\\Git\\bin\\bash.exe", "-l" }
 
 -- colorscheme
 config.color_scheme = "Catppuccin Mocha"
+
+-- tab
+config.tab_bar_at_bottom = true
+config.use_fancy_tab_bar = false
+config.hide_tab_bar_if_only_one_tab = true
+config.show_new_tab_button_in_tab_bar = false
+
+wezterm.on("format-tab-title", function(tab)
+	local title = " Kirby [" .. tab.tab_index + 1 .. "] "
+	return title
+end)
 
 -- font
 config.font = wezterm.font_with_fallback({
