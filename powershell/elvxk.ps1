@@ -135,6 +135,9 @@ function gpush
 {
   git push -u origin $args
 }
+function gco{
+  git checkout $args
+}
 
 function gmit
 {
