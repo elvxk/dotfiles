@@ -1,10 +1,10 @@
-# cd $PSHOME Profile.ps1
+# cd $PSHOME Profile.ps1 || Documents/Powershell/Profile.ps1
 # . $env:USERPROFILE\.config\powershell\elvxk.ps1
 
 # Dependencies
 # chocolatey = Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-# Terminal Icons = Install-Module -Name Terminal-Icons -Repository PSGallery
-# oh-my-posh = Install-Module -Name oh-my-posh -Repository PSGallery
+# Terminal Icons = Install-Module -Name Terminal-Icons -Repository PSGallery || choco install oh-my-posh
+# oh-my-posh = Install-Module -Name oh-my-posh -Repository PSGallery || choco install terminal-icons.powershell
 
 # choco helpers 
 Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
